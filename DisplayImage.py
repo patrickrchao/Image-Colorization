@@ -60,8 +60,8 @@ def displayImage(numImages):
     # display
     numfiles = sum(1 for f in os.listdir(color_dir) if os.path.isfile(os.path.join(color_dir, f)) and f[0] != '.')
     for i in range(numImages):
-        currImage=random.choice(os.listdir("clean/train"))
-        img_original = Image.open("clean/train/"+currImage)
+        currImage=random.choice(os.listdir("train/train"))
+        img_original = Image.open("train/train/"+currImage)
 
         img_original = original_transform(img_original)
         img_original = np.asarray(img_original)

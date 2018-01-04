@@ -19,7 +19,7 @@ original_transform = transforms.Compose([
     #transforms.ToTensor()
 ])
 
-color_dir = "clean"#/train"
+color_dir = "train"#/train"
 gray_dir = "grayscale"#/train"
 train_set = TrainFolder(color_dir,original_transform )
 train_set_size = len(train_set)

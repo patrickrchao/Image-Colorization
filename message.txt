@@ -1,0 +1,2 @@
+loss: 0.003882912
+Train Epoch:1	Percent:[0/138152 (0%)]	Loss:0.003882912

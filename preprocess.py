@@ -84,6 +84,6 @@ def makeGrayscale(path,dstpath):
 
 if __name__ == "__main__":
     #rename("reformatted")
-    #changeNames("clean/train")
-    #makeGrayscale("clean/train","grayscale/train")
-    val("clean/train","val/valImages")
+    #changeNames("train/train")
+    #makeGrayscale("train/train","grayscale/train")
+    val("train/train","val/valImages")
