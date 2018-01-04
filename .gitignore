@@ -1,0 +1,9 @@
+clean
+val
+colorimg
+gray
+BlackWhite
+test
+__pycache__
+*.zip
+cnn_params.pkl copy
