@@ -24,8 +24,9 @@ color_dir = "clean"#/train"
 gray_dir = "grayscale"#/train"
 
 color_model = Net()
-if os.path.exists('cnn_params.pkl'):
-    color_model.load_state_dict(torch.load('cnn_params.pkl'))
+modelParams="cnn_deep.pkl"
+if os.path.exists(modelParams):
+    color_model.load_state_dict(torch.load(modelParams))
 
 def show_image(image):
     """Show image"""

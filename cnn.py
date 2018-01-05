@@ -69,19 +69,22 @@ def torch_summarize(model, show_weights=True, show_parameters=True):
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
-        self.conv1 = nn.Conv2d(1, 10, kernel_size=3,stride=1,padding=1)
-        self.bn1 = nn.BatchNorm2d(10)
-        self.conv2 = nn.Conv2d(10, 10, kernel_size=3,stride=1,padding=1)
-        self.bn2 = nn.BatchNorm2d(10)
-        self.conv3 = nn.Conv2d(10, 10, kernel_size=3,stride=1,padding=1)
-        self.bn3 = nn.BatchNorm2d(10)
-        self.conv4 = nn.Conv2d(10, 2, kernel_size=3,stride=1,padding=1)
+        self.conv1 = nn.Conv2d(1,20, kernel_size=3,stride=1,padding=1)
+        self.bn1 = nn.BatchNorm2d(20)
+        self.conv2 = nn.Conv2d(20, 20, kernel_size=3,stride=1,padding=1)
+        self.bn2 = nn.BatchNorm2d(20)
+        self.conv3 = nn.Conv2d(20, 20, kernel_size=3,stride=1,padding=1)
+        self.bn3 = nn.BatchNorm2d(20)
+        self.conv4 = nn.Conv2d(20, 20, kernel_size=3,stride=1,padding=1)
+        self.bn4 = nn.BatchNorm2d(20)
+        self.conv5 = nn.Conv2d(20, 2, kernel_size=3,stride=1,padding=1)
 
     def forward(self, x):
         x = F.relu(self.bn1(self.conv1(x)))
         x = F.relu(self.bn2(self.conv2(x)))
         x = F.relu(self.bn3(self.conv3(x)))
-        x = self.conv4(x)
+        x = F.relu(self.bn4(self.conv4(x)))
+        x = self.conv5(x)
         return x
 
 
