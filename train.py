@@ -9,7 +9,7 @@ from torchvision import transforms
 import numpy as np
 
 from ImagesFolder import TrainFolder
-from cnn import Net
+from cnn import Net, AutoNet
 have_cuda = torch.cuda.is_available()
 epochs = 1
 
@@ -24,7 +24,7 @@ gray_dir = "grayscale"#/train"
 train_set = TrainFolder(color_dir,original_transform )
 train_set_size = len(train_set)
 train_loader = torch.utils.data.DataLoader(train_set, batch_size=32, shuffle=True, num_workers=4)
-color_model = Net()
+color_model = AutoNet() #Net()
 if os.path.exists('cnn_params.pkl'):
     color_model.load_state_dict(torch.load('cnn_params.pkl'))
 if have_cuda:
@@ -50,7 +50,9 @@ def train(epoch):
             classes = Variable(classes)
             optimizer.zero_grad()
             output = color_model(original_img)
-            ems_loss = torch.pow((img_ab - output), 2).sum() / torch.from_numpy(np.array(list(output.size()))).prod()
+            n = np.array(output.size(), dtype='int64')
+            # print n.dtype
+            ems_loss = torch.pow((img_ab - output), 2).sum() / torch.from_numpy(n).prod()
             loss = ems_loss
             lossmsg = 'loss: %.9f\n' % (loss.data[0])
             messagefile.write(lossmsg)

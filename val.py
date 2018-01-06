@@ -5,7 +5,7 @@ from torch.autograd import Variable
 from torchvision.utils import make_grid, save_image
 from skimage.color import lab2rgb
 from skimage import io
-from cnn import Net
+from cnn import Net, AutoNet
 from ImagesFolder import TrainFolder,ValFolder
 import numpy as np
 import matplotlib.pyplot as plt
@@ -18,7 +18,7 @@ val_set = ValFolder(data_dir)
 val_set_size = len(val_set)
 val_loader = torch.utils.data.DataLoader(val_set, batch_size=1, shuffle=False, num_workers=1)
 
-color_model = Net()
+color_model = AutoNet()
 color_model.load_state_dict(torch.load('cnn_params.pkl'))
 if have_cuda:
     color_model.cuda()

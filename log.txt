@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "train.py", line 52, in train
+    output = color_model(original_img)
+  File "/usr/local/lib/python2.7/site-packages/torch/nn/modules/module.py", line 325, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/Users/suneelbelkhale1/git/colorization/cnn.py", line 142, in forward
+    x = self.up8(F.relu(self.bn8(self.conv8(x))))
+  File "/usr/local/lib/python2.7/site-packages/torch/nn/modules/module.py", line 325, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/usr/local/lib/python2.7/site-packages/torch/nn/modules/batchnorm.py", line 37, in forward
+    self.training, self.momentum, self.eps)
+  File "/usr/local/lib/python2.7/site-packages/torch/nn/functional.py", line 1013, in batch_norm
+    return f(input, weight, bias)
+RuntimeError: running_mean should contain 4 elements not 2
