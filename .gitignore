@@ -8,3 +8,5 @@ test
 __pycache__
 *.zip
 cnn_params.pkl copy
+message.txt
+log.txt
