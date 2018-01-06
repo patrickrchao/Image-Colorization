@@ -130,11 +130,14 @@ def gan_train(epoch):
             g_loss.backward()
             g_optimizer.step()
             
+            #output every 10 batches
             if (i+1) % 10 == 0 or i == 0:
                 print('Epoch [%d/%d], Step[%d/%d], d_loss: %.4f, '
                       'g_loss: %.4f, D(x): %.2f, D(G(z)): %.2f' 
                       %(epoch, epochs, i+1, len(train_loader), d_loss.data[0], g_loss.data[0],
                         real_score.data.mean(), fake_score.data.mean()))
+                torch.save(G.state_dict(), gParams)
+                torch.save(D.state_dict(), dParams)
         
         # Save real images
         # if (epoch+1) == 1:
