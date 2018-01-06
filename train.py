@@ -11,7 +11,7 @@ import numpy as np
 from ImagesFolder import TrainFolder
 from cnn import Net, AutoNet
 have_cuda = torch.cuda.is_available()
-epochs = 1
+epochs = 3
 
 original_transform = transforms.Compose([
     transforms.RandomCrop(224),
@@ -24,9 +24,16 @@ gray_dir = "grayscale"#/train"
 train_set = TrainFolder(color_dir,original_transform )
 train_set_size = len(train_set)
 train_loader = torch.utils.data.DataLoader(train_set, batch_size=32, shuffle=True, num_workers=4)
+<<<<<<< HEAD
 color_model = AutoNet() #Net()
 if os.path.exists('cnn_params.pkl'):
     color_model.load_state_dict(torch.load('cnn_params.pkl'))
+=======
+color_model = Net()
+modelParams="cnn_deep.pkl"
+if os.path.exists(modelParams):
+    color_model.load_state_dict(torch.load(modelParams))
+>>>>>>> 547edf336b3c884c11045c81c9080e89fb09adb2
 if have_cuda:
     color_model.cuda()
 optimizer = optim.Adadelta(color_model.parameters())
@@ -63,7 +70,7 @@ def train(epoch):
                     epoch, batch_idx * len(data), len(train_loader.dataset),
                     100. * batch_idx / len(train_loader), loss.data[0])
                 messagefile.write(message)
-                torch.save(color_model.state_dict(), 'cnn_params.pkl')
+                torch.save(color_model.state_dict(), modelParams)
 
                 print('Train Epoch: {}[{}/{}({:.0f}%)]\tLoss: {:.9f}\n'.format(
                         epoch, batch_idx * len(data), len(train_loader.dataset),
@@ -74,7 +81,7 @@ def train(epoch):
         logfile.write(traceback.format_exc())
         logfile.close()
     finally:
-        torch.save(color_model.state_dict(), 'cnn_params.pkl')
+        torch.save(color_model.state_dict(), modelParams)
 
 
 for epoch in range(1, epochs + 1):

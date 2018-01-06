@@ -18,8 +18,14 @@ val_set = ValFolder(data_dir)
 val_set_size = len(val_set)
 val_loader = torch.utils.data.DataLoader(val_set, batch_size=1, shuffle=False, num_workers=1)
 
+<<<<<<< HEAD
 color_model = AutoNet()
 color_model.load_state_dict(torch.load('cnn_params.pkl'))
+=======
+color_model = Net()
+modelParams="cnn_deep.pkl"
+color_model.load_state_dict(torch.load(modelParams))
+>>>>>>> 547edf336b3c884c11045c81c9080e89fb09adb2
 if have_cuda:
     color_model.cuda()
 
@@ -50,8 +56,11 @@ def val():
             img[:, :, 1:3] = img[:, :, 1:3] * 255 - 128
             img = img.astype(np.float64)
             img = lab2rgb(img)
-            print(i,img[0,0,:])
-            color_name = 'colorimg/' + str(i) + '.jpg'
+            print(i,img[50,50,:])
+
+            filename=str(i) + '.jpg'
+            filename="0"*max((6-len(filename[:-4])),0)+filename
+            color_name = 'colorimg/' + filename
             plt.imsave(color_name, img)
             i += 1
         # use the follow method can't get the right image but I don't know why
