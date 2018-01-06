@@ -12,7 +12,7 @@ from cnn import torch_summarize
 
 class Generator(nn.Module):
     def __init__(self):
-        super(AutoNet, self).__init__()
+        super(Generator, self).__init__()
         
 
         ## ENCODER ##
@@ -75,12 +75,12 @@ class Generator(nn.Module):
 
 class Discriminator(nn.Module):
     def __init__(self):
-        super(AutoNet, self).__init__()
+        super(Discriminator, self).__init__()
         
 
         ## ENCODER ##
 
-        self.conv1 = nn.Conv2d(1, 8, kernel_size=3,stride=1,padding=1) # 10 x 224 x 224
+        self.conv1 = nn.Conv2d(2, 8, kernel_size=3,stride=1,padding=1) # 8 x 224 x 224
         self.bn1 = nn.BatchNorm2d(8)
         self.mp1 = nn.MaxPool2d(2,2) # 8 x 112 x 112
 
