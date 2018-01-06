@@ -24,16 +24,12 @@ gray_dir = "grayscale"#/train"
 train_set = TrainFolder(color_dir,original_transform )
 train_set_size = len(train_set)
 train_loader = torch.utils.data.DataLoader(train_set, batch_size=32, shuffle=True, num_workers=4)
-<<<<<<< HEAD
+
+modelParams = 'cnn_params.pkl'
 color_model = AutoNet() #Net()
-if os.path.exists('cnn_params.pkl'):
-    color_model.load_state_dict(torch.load('cnn_params.pkl'))
-=======
-color_model = Net()
-modelParams="cnn_deep.pkl"
 if os.path.exists(modelParams):
     color_model.load_state_dict(torch.load(modelParams))
->>>>>>> 547edf336b3c884c11045c81c9080e89fb09adb2
+
 if have_cuda:
     color_model.cuda()
 optimizer = optim.Adadelta(color_model.parameters())

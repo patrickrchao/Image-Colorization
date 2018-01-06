@@ -18,14 +18,9 @@ val_set = ValFolder(data_dir)
 val_set_size = len(val_set)
 val_loader = torch.utils.data.DataLoader(val_set, batch_size=1, shuffle=False, num_workers=1)
 
-<<<<<<< HEAD
+
 color_model = AutoNet()
 color_model.load_state_dict(torch.load('cnn_params.pkl'))
-=======
-color_model = Net()
-modelParams="cnn_deep.pkl"
-color_model.load_state_dict(torch.load(modelParams))
->>>>>>> 547edf336b3c884c11045c81c9080e89fb09adb2
 if have_cuda:
     color_model.cuda()
 
