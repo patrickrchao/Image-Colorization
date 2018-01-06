@@ -11,3 +11,4 @@ cnn_params.pkl copy
 message.txt
 log.txt
 .DS_Store
+*.pkl
