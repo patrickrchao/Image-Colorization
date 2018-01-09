@@ -10,18 +10,22 @@ from gan import Generator
 from ImagesFolder import TrainFolder,ValFolder
 import numpy as np
 import matplotlib.pyplot as plt
+import FileConstants
 
+color_dir=FileConstants.color_dir
+gray_dir=FileConstants.gray_dir
+modelParams=FileConstants.modelParams
+val_dir = FileConstants.val_dir
 
-data_dir = "val"
 have_cuda = torch.cuda.is_available()
 
-val_set = ValFolder(data_dir)
+val_set = ValFolder(val_dir)
 val_set_size = len(val_set)
 val_loader = torch.utils.data.DataLoader(val_set, batch_size=1, shuffle=False, num_workers=1)
 
 
-color_model = Generator() #AutoNet() #Net()
-color_model.load_state_dict(torch.load('gan_g_params.pkl'))
+color_model = AutoNet()#Generator() #AutoNet() #Net()
+color_model.load_state_dict(torch.load(modelParams))
 if have_cuda:
     color_model.cuda()
 

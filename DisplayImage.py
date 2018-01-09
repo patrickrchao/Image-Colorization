@@ -11,6 +11,7 @@ from PIL import Image
 from ImagesFolder import TrainFolder
 from cnn import Net
 from skimage.color import rgb2lab, rgb2gray
+import FileConstants
 
 epochs = 1
 
@@ -20,11 +21,12 @@ original_transform = transforms.Compose([
     #transforms.ToTensor()
 ])
 
-color_dir = "clean"#/train"
-gray_dir = "grayscale"#/train"
+color_dir=FileConstants.color_dir
+gray_dir=FileConstants.gray_dir
+modelParams=FileConstants.modelParams
 
 color_model = Net()
-modelParams="cnn_deep.pkl"
+
 if os.path.exists(modelParams):
     color_model.load_state_dict(torch.load(modelParams))
 

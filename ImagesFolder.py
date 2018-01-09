@@ -11,31 +11,6 @@ scale_transform = transforms.Compose([
 #https://github.com/shufanwu/colorNet-pytorch/blob/master/myimgfolder.py
 class TrainFolder(datasets.ImageFolder):
 
-
-    # def __init__(self,color_dir,gray_dir, transform=None,  loader=datasets.folder.default_loader):
-    #     classes, class_to_idx = datasets.folder.find_classes(color_dir)
-    #     colorImgs = datasets.folder.make_dataset(color_dir, class_to_idx)
-    #
-    #     grayImgs = datasets.folder.make_dataset(gray_dir, class_to_idx)
-    #     if len(colorImgs) == 0:
-    #         raise(RuntimeError("Found 0 images in subfolders of: " + root + "\n"
-    #                            "Supported image extensions are: " + ",".join(IMG_EXTENSIONS)))
-    #     if len(colorImgs)!=len(grayImgs):
-    #         raise(RuntimeError("Unequal number of gray and color images"))
-    #
-    #     self.color_dir = color_dir
-    #     self.gray_dir=gray_dir
-    #     self.colorImgs=colorImgs
-    #     self.grayImgs=grayImgs
-    #     self.classes = classes
-    #     self.class_to_idx = class_to_idx
-    #     self.transform = transform
-    #     self.loader=loader
-    #
-    # def __len__(self):
-    #     return len(self.colorImgs)
-
-
     def __getitem__(self, index):
         path, target = self.imgs[index]
         img = self.loader(path)

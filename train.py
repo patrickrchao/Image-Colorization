@@ -10,8 +10,11 @@ import numpy as np
 
 from ImagesFolder import TrainFolder
 from cnn import Net, AutoNet
+import FileConstants
+
+
 have_cuda = torch.cuda.is_available()
-epochs = 3
+epochs = 5
 
 original_transform = transforms.Compose([
     transforms.RandomCrop(224),
@@ -19,13 +22,15 @@ original_transform = transforms.Compose([
     #transforms.ToTensor()
 ])
 
-color_dir = "train"#/train"
-gray_dir = "grayscale"#/train"
+color_dir=FileConstants.color_dir
+gray_dir=FileConstants.gray_dir
+modelParams=FileConstants.modelParams
+
 train_set = TrainFolder(color_dir,original_transform )
 train_set_size = len(train_set)
 train_loader = torch.utils.data.DataLoader(train_set, batch_size=32, shuffle=True, num_workers=4)
 
-modelParams = 'cnn_params.pkl'
+
 color_model = AutoNet() #Net()
 if os.path.exists(modelParams):
     color_model.load_state_dict(torch.load(modelParams))
@@ -67,7 +72,6 @@ def train(epoch):
                     100. * batch_idx / len(train_loader), loss.data[0])
                 messagefile.write(message)
                 torch.save(color_model.state_dict(), modelParams)
-
                 print('Train Epoch: {}[{}/{}({:.0f}%)]\tLoss: {:.9f}\n'.format(
                         epoch, batch_idx * len(data), len(train_loader.dataset),
                         100. * batch_idx / len(train_loader), loss.data[0]))
