@@ -73,14 +73,18 @@ def changeNames(filepath):
 #https://stackoverflow.com/questions/47087528/converting-images-in-a-folder-to-grayscale-using-python-and-opencv-and-writing-i
 def makeGrayscale(path,dstpath):
     files = [f for f in listdir(path) if isfile(join(path,f))]
-
+    i = 0
     for image in files:
+
         if image!=".DS_Store":
-            print(image)
-            img = cv2.imread(os.path.join(path,image))
-            gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-            dstPath = join(dstpath,image)
-            cv2.imwrite(dstPath,gray)
+            if i<1:
+                i=1
+
+                img = cv2.imread(os.path.join(path,image))
+                print(img.shape)
+                gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+                dstPath = join(dstpath,image)
+                cv2.imwrite(dstPath,gray)
 
 if __name__ == "__main__":
     # rename("reformatted")

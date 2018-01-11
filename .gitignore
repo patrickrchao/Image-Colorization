@@ -12,4 +12,7 @@ message.txt
 log.txt
 .DS_Store
 *.pkl
+generated
+cnn_visualize.py
+misc_functions.py
 AC_colorimg_samples
