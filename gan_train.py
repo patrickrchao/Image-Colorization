@@ -31,7 +31,7 @@ transform = transforms.Compose(
     [
     transforms.RandomCrop(224),
     transforms.RandomHorizontalFlip(),
-    transforms.ToTensor(),
+    #transforms.ToTensor(),
     #transforms.Lambda(lambda img:print(img))
     #transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
 ])
@@ -84,12 +84,9 @@ def gan_train(epoch):
             batch_size = images[0].size(0)
 
             messagefile = open('./message.txt', 'a')
-            print(images[0].shape)
             bw_image = images[0].unsqueeze(1).float()
-            print(bw_image.shape)
-
             ab_image = images[1].float()
-            #ab_image = ab_image.permute(0,3, 1, 2)
+
             bw_image = to_var(bw_image)
             ab_image = to_var(ab_image)
             classes = to_var(classes)

@@ -1,14 +1,22 @@
 Traceback (most recent call last):
-  File "gan_train.py", line 110, in gan_train
-    fake_images = G(bw_image)
-  File "/usr/local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 325, in __call__
-    result = self.forward(*input, **kwargs)
-  File "/Users/Patrick/Documents/Berkeley/2017-2018/Side Projects/Image Colorization/gan.py", line 60, in forward
-    x = self.mp1(F.relu(self.bn1(self.conv1(x))))
-  File "/usr/local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 325, in __call__
-    result = self.forward(*input, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 277, in forward
-    self.padding, self.dilation, self.groups)
-  File "/usr/local/lib/python3.6/site-packages/torch/nn/functional.py", line 85, in conv2d
-    raise ValueError("Expected 4D tensor as input, got {}D tensor instead.".format(input.dim()))
-ValueError: Expected 4D tensor as input, got 5D tensor instead.
+  File "gan_train.py", line 82, in gan_train
+    for i, (images, classes) in enumerate(train_loader):
+  File "/usr/local/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 210, in __next__
+    return self._process_next_batch(batch)
+  File "/usr/local/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 230, in _process_next_batch
+    raise batch.exc_type(batch.exc_msg)
+ValueError: Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 42, in _worker_loop
+    samples = collate_fn([dataset[i] for i in batch_indices])
+  File "/usr/local/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 42, in <listcomp>
+    samples = collate_fn([dataset[i] for i in batch_indices])
+  File "/Users/Patrick/Documents/Berkeley/2017-2018/Side Projects/Image Colorization/ImagesFolder.py", line 21, in __getitem__
+    img_lab = rgb2lab(img_original)
+  File "/usr/local/lib/python3.6/site-packages/skimage/color/colorconv.py", line 1035, in rgb2lab
+    return xyz2lab(rgb2xyz(rgb), illuminant, observer)
+  File "/usr/local/lib/python3.6/site-packages/skimage/color/colorconv.py", line 678, in rgb2xyz
+    arr = _prepare_colorarray(rgb).copy()
+  File "/usr/local/lib/python3.6/site-packages/skimage/color/colorconv.py", line 155, in _prepare_colorarray
+    raise ValueError(msg)
+ValueError: the input array must be have a shape == (.., ..,[ ..,] 3)), got (3, 224, 224)
+

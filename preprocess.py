@@ -81,7 +81,6 @@ def makeGrayscale(path,dstpath):
                 i=1
 
                 img = cv2.imread(os.path.join(path,image))
-                print(img.shape)
                 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
                 dstPath = join(dstpath,image)
                 cv2.imwrite(dstPath,gray)
