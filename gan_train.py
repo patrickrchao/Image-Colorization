@@ -18,18 +18,30 @@ have_cuda = torch.cuda.is_available()
 epochs = 3
 
 original_transform = transforms.Compose([
+    #transforms.ToTensor(),
     transforms.RandomCrop(224),
     transforms.RandomHorizontalFlip(),
-    #transforms.ToTensor()
+    transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                 std=[0.229, 0.224, 0.225]),
+    
 ])
 
+
+transform = transforms.Compose(
+    [
+    transforms.RandomCrop(224),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    #transforms.Lambda(lambda img:print(img))
+    #transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+])
 
 g_iters = 10
 d_iters = 10
 
 color_dir = "train"#/train"
 gray_dir = "grayscale"#/train"
-train_set = TrainFolder(color_dir,original_transform )
+train_set = TrainFolder(color_dir,transform )
 train_set_size = len(train_set)
 train_loader = torch.utils.data.DataLoader(train_set, batch_size=32, shuffle=True, num_workers=4)
 
@@ -57,7 +69,6 @@ d_optimizer = torch.optim.Adam(D.parameters(), lr=0.0003)
 g_optimizer = torch.optim.Adam(G.parameters(), lr=0.0003)
 
 
-
 def to_var(x):
     if torch.cuda.is_available():
         x = x.cuda()
@@ -73,10 +84,12 @@ def gan_train(epoch):
             batch_size = images[0].size(0)
 
             messagefile = open('./message.txt', 'a')
-
+            print(images[0].shape)
             bw_image = images[0].unsqueeze(1).float()
-            ab_image = images[1].float()
+            print(bw_image.shape)
 
+            ab_image = images[1].float()
+            #ab_image = ab_image.permute(0,3, 1, 2)
             bw_image = to_var(bw_image)
             ab_image = to_var(ab_image)
             classes = to_var(classes)

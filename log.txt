@@ -1,14 +1,14 @@
 Traceback (most recent call last):
-  File "train.py", line 60, in train
-    output = color_model(original_img)
-  File "/Users/Patrick/anaconda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 325, in __call__
+  File "gan_train.py", line 110, in gan_train
+    fake_images = G(bw_image)
+  File "/usr/local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 325, in __call__
     result = self.forward(*input, **kwargs)
-  File "/Users/Patrick/Documents/Berkeley/2017-2018/Image Colorization/cnn.py", line 144, in forward
-    x = self.mp4(F.relu(self.bn4(self.conv4(x))))
-  File "/Users/Patrick/anaconda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 325, in __call__
+  File "/Users/Patrick/Documents/Berkeley/2017-2018/Side Projects/Image Colorization/gan.py", line 60, in forward
+    x = self.mp1(F.relu(self.bn1(self.conv1(x))))
+  File "/usr/local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 325, in __call__
     result = self.forward(*input, **kwargs)
-  File "/Users/Patrick/anaconda/lib/python3.6/site-packages/torch/nn/modules/batchnorm.py", line 37, in forward
-    self.training, self.momentum, self.eps)
-  File "/Users/Patrick/anaconda/lib/python3.6/site-packages/torch/nn/functional.py", line 1013, in batch_norm
-    return f(input, weight, bias)
-RuntimeError: running_mean should contain 64 elements not 32
+  File "/usr/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 277, in forward
+    self.padding, self.dilation, self.groups)
+  File "/usr/local/lib/python3.6/site-packages/torch/nn/functional.py", line 85, in conv2d
+    raise ValueError("Expected 4D tensor as input, got {}D tensor instead.".format(input.dim()))
+ValueError: Expected 4D tensor as input, got 5D tensor instead.

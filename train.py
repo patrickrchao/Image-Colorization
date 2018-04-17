@@ -14,7 +14,7 @@ import FileConstants
 
 
 have_cuda = torch.cuda.is_available()
-epochs = 5
+epochs = 20
 
 original_transform = transforms.Compose([
     transforms.RandomCrop(224),

@@ -53,7 +53,7 @@ class Generator(nn.Module):
         self.up8 = nn.Upsample(scale_factor=2, mode='nearest') # 4 x 224 x 224
 
         self.conv9 = nn.Conv2d(4, 2, kernel_size=3, stride=1,padding=1) # 2 x 224 x 224
-        self.sig = nn.Sigmoid()
+        self.tanh = nn.Tanh()
 
     def forward(self, x):
         #encode
@@ -67,7 +67,7 @@ class Generator(nn.Module):
         x = self.up7(F.relu(self.bn7(self.conv7(x))))
         x = self.up8(F.relu(self.bn8(self.conv8(x))))
 
-        x = self.sig(self.conv9(x))
+        x = self.tanh(self.conv9(x))
         # x = self.conv4(x)
         return x
 

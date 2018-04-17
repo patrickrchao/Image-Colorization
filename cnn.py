@@ -92,7 +92,6 @@ class AutoNet(nn.Module):
 
 
         ## ENCODER ##
-
         self.conv1 = nn.Conv2d(1, 4, kernel_size=3,stride=1,padding=1) # 4 x 224 x 224
         self.bn1 = nn.BatchNorm2d(4)
 
